@@ -95,6 +95,80 @@
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(/*! ./formControl */ "./src/019-exercicios/formControl.ts");
+addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nameInput = document.querySelector('.input-user');
+    var emailInput = document.querySelector('.input-email');
+    var passwordInput = document.querySelector('.input-password');
+    var confirmPasswordInput = document.querySelector('.input-confirm-password');
+});
+
+
+/***/ }),
+
+/***/ "./src/019-exercicios/formControl.ts":
+/*!*******************************************!*\
+  !*** ./src/019-exercicios/formControl.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var SHOW_ERROR_MESSAGES = 'show-error-message';
+var form = document.querySelector('.form');
+var nameInput = document.querySelector('.input-user');
+var emailInput = document.querySelector('.input-email');
+var passwordInput = document.querySelector('.input-password');
+var confirmPasswordInput = document.querySelector('.input-confirm-password');
+form.addEventListener('submit', function (even) {
+    even.preventDefault();
+    hideErrorMessages(this);
+    cheakForEmptyFilds(nameInput, emailInput, passwordInput, confirmPasswordInput);
+    heveErr(nameInput, emailInput, passwordInput, confirmPasswordInput) && console.log('mandou');
+});
+function cheakForEmptyFilds() {
+    var input = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        input[_i] = arguments[_i];
+    }
+    input.forEach(function (input) {
+        if (!input.value) {
+            showErrorMessage(input, 'invalido');
+        }
+        ;
+    });
+}
+;
+function hideErrorMessages(form) {
+    form.querySelectorAll('.' + SHOW_ERROR_MESSAGES).forEach(function (i) { return i.classList.remove(SHOW_ERROR_MESSAGES); });
+}
+;
+function showErrorMessage(input, mgs) {
+    var formFilds = input.parentElement;
+    var errorMessage = formFilds.querySelector('.error-message');
+    errorMessage.innerText = mgs;
+    formFilds.classList.add(SHOW_ERROR_MESSAGES);
+}
+;
+function heveErr() {
+    var inputs = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        inputs[_i] = arguments[_i];
+    }
+    var devo = true;
+    inputs.forEach(function (e) {
+        var _a;
+        (_a = e.parentElement) === null || _a === void 0 ? void 0 : _a.classList.forEach(function (e) {
+            if (e === 'show-error-message') {
+                devo = false;
+            }
+        });
+    });
+    return devo;
+}
 
 
 /***/ })
